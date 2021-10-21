@@ -9,6 +9,17 @@
     "prettier": "prettier '{src,pages,server,config}/**/**/(*.js|*.jsx|*.ts|*.tsx)' --write",
     "eslint": "./node_modules/.bin/eslint --ext jsx,js ."
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "{src,pages,server,config}/**/**/(*.js|*.jsx)": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "ajv": "^8.6.3",
     "antd": "^4.16.13",
@@ -43,16 +54,5 @@
     "lint-staged": "^11.2.3",
     "nodemon": "^2.0.12",
     "prettier": "^2.4.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "{src,pages,server,config}/**/**/(*.js|*.jsx|*.ts|*.tsx)": [
-      "prettier --write",
-      "git add"
-    ]
   }
 }
