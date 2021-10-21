@@ -1,0 +1,15 @@
+{
+  "title": "Status",
+  "type": "object",
+  "required": ["email"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "unique UUID of the user"
+    },
+    "email": {
+      "type": "string",
+      "description": "email that uniquely identifies a user in the application."
+    }
+  }
+}

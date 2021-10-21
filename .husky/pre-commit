@@ -1,0 +1,4 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+./node_modules/.bin/pretty-quick --pattern '**/*.*(js|jsx)' --staged && npm run eslint && npm run test && npm run test:compile

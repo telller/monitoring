@@ -1,0 +1,45 @@
+{
+  "name": "monitoring",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "NODE_ENV=development ./node_modules/.bin/nodemon --inspect -r dotenv/config ./server.js",
+    "build": "next build",
+    "start": "next start",
+    "prettier": "prettier '{src,pages,server,config}/**/**/(*.js|*.jsx|*.ts|*.tsx)' --write",
+    "eslint": "./node_modules/.bin/eslint --ext jsx,js ."
+  },
+  "dependencies": {
+    "ajv": "^8.6.3",
+    "antd": "^4.16.13",
+    "bson": "^4.5.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "dotenv-load": "^2.0.0",
+    "events": "^3.3.0",
+    "express": "^4.17.1",
+    "http-terminator": "^3.0.3",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
+    "mongodb": "^4.1.3",
+    "next": "11.1.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "eslint": "8.0.1",
+    "eslint-config-next": "^11.1.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jest-dom": "^3.9.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.25.1",
+    "eslint-plugin-testing-library": "^3.10.2",
+    "nodemon": "^2.0.12",
+    "prettier": "2.4.0"
+  }
+}
