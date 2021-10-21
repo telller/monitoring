@@ -45,7 +45,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run prettier && git add --all"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "{src,pages,server,config}/**/**/(*.js|*.jsx|*.ts|*.tsx)": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
