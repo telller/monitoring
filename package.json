@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "prettier": "prettier '{src,pages,server,config}/**/**/(*.js|*.jsx|*.ts|*.tsx)' --write",
-    "eslint": "./node_modules/.bin/eslint --ext jsx,js ."
+    "eslint": "./node_modules/.bin/eslint --ext jsx,js .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "ajv": "^8.6.3",
@@ -43,15 +44,5 @@
     "lint-staged": "^11.2.3",
     "nodemon": "^2.0.12",
     "prettier": "^2.4.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "{src,pages,server,config}/**/**/(*.js|*.jsx)": [
-      "prettier --write"
-    ]
   }
 }
