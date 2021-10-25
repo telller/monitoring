@@ -1,0 +1,3 @@
+export const GET_STATUS_REQUEST = 'status.GET_STATUS_REQUEST'
+export const GET_STATUS_SUCCESS = 'status.GET_STATUS_SUCCESS'
+export const GET_STATUS_FAILED = 'status.GET_STATUS_FAILED'

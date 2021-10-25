@@ -17,12 +17,6 @@ StatusModel.validator = statusValidator
 eventEmitter.on('mongoconnect', async () => {
   try {
     StatusModel.initialize()
-    await StatusModel.createIndex(
-      {
-        email: 1,
-      },
-      { unique: true }
-    )
   } catch (error) {
     console.error(`[StatusModel] - Failed to create index ${error}`)
     throw error

@@ -1,18 +1,17 @@
 const Status = require('./status.model')
 
 module.exports = {
-  getUsers: async (req, res, next) => {
+  createStatusRecord: async (req, res, next) => {
     try {
-      const result = await Status.find({})
-      console.log({ result })
+      const result = await Status.create(req.body)
       return res.status(200).json(result)
     } catch (error) {
       next(error)
     }
   },
-  createUser: async (req, res, next) => {
+  getStatus: async (req, res, next) => {
     try {
-      const result = await Status.create(req.body)
+      const result = await Status.find()
       return res.status(200).json(result)
     } catch (error) {
       next(error)

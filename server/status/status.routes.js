@@ -5,14 +5,14 @@ const statusController = require('./status.controller')
 router
   .post('/', async (req, res, next) => {
     try {
-      await statusController.createUser(req, res, next)
+      await statusController.createStatusRecord(req, res, next)
     } catch (error) {
       next(error)
     }
   })
   .get('/', async (req, res, next) => {
     try {
-      await statusController.getUsers(req, res, next)
+      await statusController.getStatus(req, res, next)
     } catch (error) {
       next(error)
     }

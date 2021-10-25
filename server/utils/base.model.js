@@ -74,14 +74,13 @@ class BaseModel {
   }
 
   static find(searchTerms, options = {}) {
-    const That = this
     return new Promise((resolve, reject) => {
       this.collection.find(searchTerms, options, async (err, resources) => {
         if (err) return reject(err)
         resources = await resources.toArray()
         resources = resources.map(resource => {
           resource.id = resource._id.toString()
-          return new That(resource, resource._id)
+          return resource
         })
         return resolve(resources)
       })
@@ -97,19 +96,17 @@ class BaseModel {
    * @returns {Promise<Resource|Err>}
    */
   static findOne(object, options = {}) {
-    const That = this
     return new Promise((resolve, reject) => {
       this.collection.findOne(object, options, (err, resource) => {
         if (err) return reject(err)
         if (!resource) return reject(new NotFoundError())
         resource.id = resource._id.toString()
-        return resolve(new That(resource, resource._id))
+        return resolve(resource)
       })
     })
   }
 
   static findById(id, options = {}) {
-    const That = this
     return new Promise((resolve, reject) => {
       try {
         this.collection.findOne(
@@ -119,7 +116,7 @@ class BaseModel {
             if (err) return reject(err)
             if (!resource) return reject(new NotFoundError())
             resource.id = resource._id.toString()
-            return resolve(new That(resource, resource._id))
+            return resolve(resource)
           }
         )
       } catch (error) {
