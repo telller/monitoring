@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux'
-import api from '../services/baseService'
+import api from 'services/baseService'
 import reducers from './reducers'
 import { useMemo } from 'react'
 import thunk from 'redux-thunk'

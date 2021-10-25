@@ -11,7 +11,7 @@ import {
 import styles from '../styles/Home.module.css'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getStatus } from '../src/store/actions/status'
+import { getStatus } from 'store/actions'
 import moment from 'moment'
 
 const Home = () => {
