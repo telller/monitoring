@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  nodeserver:
+    restart: always
+    build:
+      context: ./
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - MONGO_DB_NAME=growbox
+      - MONGO_URL=mongodb://mongo_db:27017
+    depends_on:
+      - api_db
+
+  mongo_db:
+    restart: always
+    image: mongo:latest
+
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"

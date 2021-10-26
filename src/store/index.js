@@ -33,6 +33,8 @@ const initializeStore = preloadedState => {
   return _store
 }
 
-export const useStore = initialState => {
+const useStore = initialState => {
   return useMemo(() => initializeStore(initialState), [initialState])
 }
+
+export { useStore }
