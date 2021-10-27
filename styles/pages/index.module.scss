@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.general {
+  border-radius: 10px;
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 44px rgb(26 97 151 / 20%);
+}
+
+.detailed {
+  display: flex;
+  border-radius: 10px;
+  background: #fff;
+  padding: 20px;
+  height: 100%;
+  box-shadow: 0 10px 44px rgb(26 97 151 / 20%);
+}
