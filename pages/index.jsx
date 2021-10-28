@@ -9,27 +9,44 @@ import {
 } from 'recharts'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from 'styles/pages/index.module.scss'
-import { getStatus } from 'store/actions'
-import { useEffect } from 'react'
-import { Progress } from 'antd'
+import { getStatistic, getStatus } from 'store/actions'
+import { useEffect, useState } from 'react'
+import { Progress, DatePicker } from 'antd'
 import { get } from 'lodash'
 import moment from 'moment'
 
 const Home = () => {
-  const { status, statusFetching } = useSelector(store => store.status)
+  const { status, statusFetching, statistic, statisticFetching } = useSelector(
+    store => store.status
+  )
+  const [dateRange, $dateRange] = useState([
+    moment().startOf('day'),
+    moment().endOf('day'),
+  ])
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getStatus())
-  }, [])
+    dispatch(getStatistic(dateRange))
+    dispatch(getStatus(dateRange))
+  }, [dateRange])
+
+  console.log({ statistic, statisticFetching })
 
   if (statusFetching) return 'Loading...'
 
   return (
     <div className={styles.container}>
+      <div className={styles.containerHeader}>
+        <DatePicker.RangePicker
+          onChange={val => $dateRange(val)}
+          defaultValue={dateRange}
+          value={dateRange}
+          showTime
+        />
+      </div>
       <div className={styles.general}>
         <Progress
-          percent={get(status, `[${status.length - 1}].temperature`, 0)}
+          percent={get(statistic, 'temperature', 0)}
           format={value => <span>{value}&deg;C</span>}
           style={{ marginRight: '30px' }}
           strokeColor="#ff0000"
@@ -38,7 +55,7 @@ const Home = () => {
           width={200}
         />
         <Progress
-          percent={get(status, `[${status.length - 1}].humidity`, 0)}
+          percent={get(statistic, 'humidity', 0)}
           strokeColor="#0000ff"
           strokeWidth={10}
           type="circle"

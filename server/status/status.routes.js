@@ -17,5 +17,12 @@ router
       next(error)
     }
   })
+  .get('/statistic', async (req, res, next) => {
+    try {
+      await statusController.getStatistic(req, res, next)
+    } catch (error) {
+      next(error)
+    }
+  })
 
 module.exports = router

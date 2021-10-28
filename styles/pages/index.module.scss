@@ -5,6 +5,12 @@
   height: 100%;
 }
 
+.containerHeader {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0px;
+}
+
 .general {
   border-radius: 10px;
   background: #fff;
