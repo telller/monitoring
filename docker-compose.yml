@@ -3,6 +3,8 @@ services:
   mongo_db:
     restart: always
     image: mongo:latest
+    ports:
+      - "27017:27017"
 
   nodeserver:
     restart: always
