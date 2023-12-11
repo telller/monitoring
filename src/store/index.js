@@ -1,17 +1,21 @@
-import { createStore, applyMiddleware } from 'redux'
 import api from 'services/baseService'
 import reducers from './reducers'
 import { useMemo } from 'react'
-import thunk from 'redux-thunk'
+import { configureStore } from '@reduxjs/toolkit'
 
 let index
 
 const initStore = initialState => {
-  return createStore(
-    reducers,
-    initialState,
-    applyMiddleware(thunk.withExtraArgument(api))
-  )
+  return configureStore({
+    reducer: reducers,
+    preloadedState: initialState,
+    middleware: getDefaultMiddleware =>
+      getDefaultMiddleware({
+        thunk: {
+          extraArgument: api,
+        },
+      }),
+  })
 }
 
 const initializeStore = preloadedState => {

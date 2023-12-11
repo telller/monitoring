@@ -1,10 +1,10 @@
 const next = require('next')
 const { createHttpTerminator } = require('http-terminator')
-const { MongoClient } = require('mongodb')
-const dbConfig = require('./config/db.config')
-const globals = require('./server/utils/globals')
-const eventEmitter = require('./server/utils/event-emitter')
-const { CLIENT, CLIENT_DB } = require('./server/utils/constants')
+// const { MongoClient } = require('mongodb')
+// const dbConfig = require('./config/db.config')
+// const globals = require('./server/utils/globals')
+// const eventEmitter = require('./server/utils/event-emitter')
+// const { CLIENT, CLIENT_DB } = require('./server/utils/constants')
 
 const init = require('./server/app')
 
@@ -17,25 +17,26 @@ nextApplication
   .prepare()
   .then(async () => {
     await new Promise(resolve => {
-      MongoClient.connect(
-        dbConfig.generateConnectionString(),
-        dbConfig.options,
-        (err, client) => {
-          if (err) {
-            console.error(err.message)
-            throw err
-          }
-          const dbName = client.s.options.dbName
-          const res = {
-            [CLIENT]: client,
-            [CLIENT_DB]: client.db(dbName),
-          }
-          globals.set(CLIENT, client)
-          globals.set(CLIENT_DB, client.db(dbName))
-          eventEmitter.emit('mongoconnect', res)
-          resolve(res)
-        }
-      )
+      // MongoClient.connect(
+      //   dbConfig.generateConnectionString(),
+      //   dbConfig.options,
+      //   (err, client) => {
+      //     if (err) {
+      //       console.error(err.message)
+      //       throw err
+      //     }
+      //     const dbName = client.s.options.dbName
+      //     const res = {
+      //       [CLIENT]: client,
+      //       [CLIENT_DB]: client.db(dbName),
+      //     }
+      //     globals.set(CLIENT, client)
+      //     globals.set(CLIENT_DB, client.db(dbName))
+      //     eventEmitter.emit('mongoconnect', res)
+      //     resolve(res)
+      //   }
+      // )
+      resolve()
     })
     const app = init(handle)
 
