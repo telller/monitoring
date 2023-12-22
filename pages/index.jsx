@@ -13,15 +13,15 @@ import { getStatistic, getStatus } from 'store/actions'
 import { useEffect, useState } from 'react'
 import { Progress, DatePicker } from 'antd'
 import { get } from 'lodash'
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 const Home = () => {
   const { status, statusFetching, statistic, statisticFetching } = useSelector(
     store => store.status
   )
   const [dateRange, $dateRange] = useState([
-    moment().startOf('day'),
-    moment().endOf('day'),
+    dayjs().startOf('day'),
+    dayjs().endOf('day'),
   ])
   const dispatch = useDispatch()
 
@@ -52,14 +52,14 @@ const Home = () => {
           strokeColor="#ff0000"
           strokeWidth={10}
           type="circle"
-          width={200}
+          size={200}
         />
         <Progress
           percent={get(statistic, 'humidity', 0)}
           strokeColor="#0000ff"
           strokeWidth={10}
           type="circle"
-          width={200}
+          size={200}
         />
       </div>
       <div className={styles.detailed}>
@@ -67,11 +67,11 @@ const Home = () => {
           <LineChart data={status}>
             <XAxis
               dataKey="createdAt"
-              tickFormatter={date => moment(date).format('HH:mm')}
+              tickFormatter={date => dayjs(date).format('HH:mm')}
             />
             <YAxis />
             <Tooltip
-              labelFormatter={date => moment(date).format('DD.MM.YY HH:mm')}
+              labelFormatter={date => dayjs(date).format('DD.MM.YY HH:mm')}
             />
             <Legend />
             <Line

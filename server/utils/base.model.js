@@ -1,4 +1,4 @@
-const moment = require('moment-timezone')
+const dayjs = require('dayjs')
 const { ObjectId } = require('bson')
 
 const globals = require('./globals')
@@ -54,7 +54,7 @@ class BaseModel {
         return reject(new BadRequestError(validationError))
       }
 
-      const timestamp = moment.utc().format('YYYY-MM-DDTHH:mm:ssZ')
+      const timestamp = dayjs.utc().local().format('YYYY-MM-DDTHH:mm:ssZ')
       payload.createdAt = timestamp
       payload.lastUpdated = timestamp
 
@@ -144,7 +144,7 @@ class BaseModel {
           {
             $set: {
               ...payload,
-              lastUpdated: moment.utc().format('YYYY-MM-DDTHH:mm:ssZ'),
+              lastUpdated: dayjs.utc().local().format('YYYY-MM-DDTHH:mm:ssZ'),
             },
           },
           Object.assign(options, { returnOriginal: false }),
@@ -221,7 +221,10 @@ class BaseModel {
       if (validationError?.length) {
         return reject(new BadRequestError(validationError))
       }
-      this.resource.lastUpdated = moment.utc().format('YYYY-MM-DDTHH:mm:ssZ')
+      this.resource.lastUpdated = dayjs
+        .utc()
+        .local()
+        .format('YYYY-MM-DDTHH:mm:ssZ')
       this.collection.save(this.resource, (err, result) => {
         if (err) return reject(err)
         return resolve(result.result)

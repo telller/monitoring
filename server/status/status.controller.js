@@ -1,7 +1,7 @@
 const { BadRequestError } = require('../utils/http-errors')
 const { meanBy, get } = require('lodash')
 const Status = require('./status.model')
-const moment = require('moment')
+const dayjs = require('dayjs')
 
 module.exports = {
   createStatusRecord: async (req, res, next) => {
@@ -29,8 +29,8 @@ module.exports = {
       }
       const result = await Status.find({
         createdAt: {
-          $gte: moment(from).toISOString(),
-          $lt: moment(to).toISOString(),
+          $gte: dayjs(from).toISOString(),
+          $lt: dayjs(to).toISOString(),
         },
       })
       return res.status(200).json(result)
@@ -46,8 +46,8 @@ module.exports = {
       }
       const result = await Status.find({
         createdAt: {
-          $gte: moment(from).toISOString(),
-          $lt: moment(to).toISOString(),
+          $gte: dayjs(from).toISOString(),
+          $lt: dayjs(to).toISOString(),
         },
       })
       return res.status(200).json({

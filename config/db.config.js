@@ -4,7 +4,6 @@ const dbConfig = {
     `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOSTNAME}`,
   db_name: process.env.MONGO_DB_NAME,
   options: {
-    keepAlive: 1,
     connectTimeoutMS: 10000,
     socketTimeoutMS: 10000,
   },
