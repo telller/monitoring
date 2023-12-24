@@ -19,7 +19,7 @@ const dbConfig = {
     //   return `${this.connection}/${this.db_name}`
     // }
 
-    return `teller_admin:teller_admin@${process.env.MONGO_URL}/${process.env.MONGO_DB_NAME}`
+    return `mongodb://teller_admin:teller_admin@${process.env.MONGO_URL}/${process.env.MONGO_DB_NAME}?authSource=admin`
   },
 }
 
