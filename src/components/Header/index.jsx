@@ -5,7 +5,7 @@ import { Layout, Avatar } from 'antd'
 const Header = () => {
   return (
     <Layout.Header className={styles.header}>
-      <div>Dashboard deploy test</div>
+      <div>Dashboard</div>
       <div className={styles.avatar}>
         Vlad Golyachenko
         <Avatar
