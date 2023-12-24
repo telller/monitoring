@@ -8,16 +8,18 @@ const dbConfig = {
     socketTimeoutMS: 10000,
   },
   generateConnectionString: function () {
-    if (!this.connection || !this.db_name) {
-      console.warn('db.config needs both connection string and db_name')
-      return null
-    }
+    // if (!this.connection || !this.db_name) {
+    //   console.warn('db.config needs both connection string and db_name')
+    //   return null
+    // }
+    //
+    // if (process.env.NODE_ENV === 'production') {
+    //   return this.connection.replace(':27017/', `:27017/${this.db_name}`)
+    // } else {
+    //   return `${this.connection}/${this.db_name}`
+    // }
 
-    if (process.env.NODE_ENV === 'production') {
-      return this.connection.replace(':27017/', `:27017/${this.db_name}`)
-    } else {
-      return `${this.connection}/${this.db_name}`
-    }
+    return `${process.env.MONGO_URL}/${process.env.MONGO_DB_NAME}`
   },
 }
 
