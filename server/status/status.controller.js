@@ -8,10 +8,10 @@ module.exports = {
     try {
       let obj = { ...req.body }
       Object.keys(req.body).forEach(key => {
-        if (key !== 'dateTime') {
+        if (key !== 'timestamp_board') {
           obj = {
             ...obj,
-            [key]: +get(req.body, key, 0).toFixed(2),
+            [key]: +get(obj, key, 0).toFixed(2),
           }
         }
       })
