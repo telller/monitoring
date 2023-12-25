@@ -32,22 +32,17 @@ const Home = () => {
   }, [dateRange])
 
   const onChange = value => {
+    const date = dayjs().utc().local()
     const ACTIONS = {
-      today: [dayjs().startOf('day'), dayjs().endOf('day')],
+      today: [date.startOf('day'), date.endOf('day')],
       yesterday: [
-        dayjs().subtract(1, 'day').startOf('day'),
-        dayjs().subtract(1, 'day').endOf('day'),
+        date.subtract(1, 'day').startOf('day'),
+        date.subtract(1, 'day').endOf('day'),
       ],
-      week: [dayjs().subtract(1, 'week').startOf('day'), dayjs().endOf('day')],
-      month: [
-        dayjs().subtract(1, 'month').startOf('day'),
-        dayjs().endOf('day'),
-      ],
-      quoter: [
-        dayjs().subtract(3, 'month').startOf('day'),
-        dayjs().endOf('day'),
-      ],
-      year: [dayjs().subtract(1, 'year').startOf('day'), dayjs().endOf('day')],
+      week: [date.subtract(1, 'week').startOf('day'), date.endOf('day')],
+      month: [date.subtract(1, 'month').startOf('day'), date.endOf('day')],
+      quoter: [date.subtract(3, 'month').startOf('day'), date.endOf('day')],
+      year: [date.subtract(1, 'year').startOf('day'), date.endOf('day')],
     }
 
     if (value !== 'custom') {

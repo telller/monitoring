@@ -144,7 +144,7 @@ class BaseModel {
           {
             $set: {
               ...payload,
-              lastUpdated: dayjs.utc().local().format('YYYY-MM-DDTHH:mm:ssZ'),
+              lastUpdated: dayjs.utc().local().format(),
             },
           },
           Object.assign(options, { returnOriginal: false }),
@@ -162,7 +162,7 @@ class BaseModel {
             delete historyDoc._id
             this.historyCollection.insertOne(historyDoc, err2 => {
               if (err2) return reject(err2)
-              updatedDoc.value.id = updatedDoc.value.id.toString()
+              updatedDoc.value.id = dayjs.utc().local().format()
               return resolve(new That(updatedDoc.value, updatedDoc.value._id))
             })
           }
@@ -221,10 +221,7 @@ class BaseModel {
       if (validationError?.length) {
         return reject(new BadRequestError(validationError))
       }
-      this.resource.lastUpdated = dayjs
-        .utc()
-        .local()
-        .format('YYYY-MM-DDTHH:mm:ssZ')
+      this.resource.lastUpdated = dayjs.utc().local().format()
       this.collection.save(this.resource, (err, result) => {
         if (err) return reject(err)
         return resolve(result.result)

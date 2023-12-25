@@ -29,8 +29,8 @@ module.exports = {
       }
       const result = await Status.find({
         createdAt: {
-          $gte: dayjs(from).toISOString(),
-          $lt: dayjs(to).toISOString(),
+          $gte: from,
+          $lt: to,
         },
       })
       return res.status(200).json(result)
@@ -46,8 +46,8 @@ module.exports = {
       }
       const result = await Status.find({
         createdAt: {
-          $gte: dayjs(from).toISOString(),
-          $lt: dayjs(to).toISOString(),
+          $gte: from,
+          $lt: to,
         },
       })
       return res.status(200).json({
